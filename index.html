@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>คู่มือสุขภาพไต - ความรู้เพื่อผู้ป่วยและผู้มีความเสี่ยงโรคไต</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>CAPD เพื่อนร่วมทาง | คู่มือดูแลตัวเองสำหรับผู้ป่วยล้างไตทางช่องท้อง</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,23 +12,35 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Sarabun', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-            line-height: 1.8;
+        :root {
+            --primary: #4ECDC4;
+            --primary-dark: #26A69A;
+            --secondary: #FF6B9D;
+            --accent: #FFE66D;
+            --warning: #FF8A5B;
+            --danger: #EF5350;
+            --success: #66BB6A;
+            --light: #F7FFF7;
+            --dark: #2C3E50;
+            --gradient: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
         }
 
-        /* Navigation */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.9;
+            font-size: 18px;
+        }
+
+        .header {
+            background: var(--gradient);
             padding: 1rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(78, 205, 196, 0.3);
         }
 
         .nav-container {
@@ -40,195 +52,352 @@
         }
 
         .logo {
+            font-family: 'Prompt', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
-            color: #667eea;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            color: white;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
         }
 
         .nav-links a {
+            color: white;
             text-decoration: none;
-            color: #555;
             font-weight: 500;
-            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s;
         }
 
         .nav-links a:hover {
-            color: #667eea;
+            background: rgba(255,255,255,0.2);
         }
 
-        /* Hero Section */
         .hero {
-            padding: 8rem 2rem 4rem;
+            background: var(--gradient);
+            padding: 10rem 2rem 5rem;
             text-align: center;
             color: white;
+            position: relative;
         }
 
         .hero h1 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-tagline {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            line-height: 2;
+        }
+
+        .hero-encouragement {
+            background: rgba(255,255,255,0.2);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            display: inline-block;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .section-emoji {
             font-size: 3rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            display: block;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Main Content */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Cards */
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-
-        .card h2 {
-            color: #667eea;
-            margin-bottom: 1.5rem;
+        .section-title {
+            font-family: 'Prompt', sans-serif;
             font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
         }
 
-        .card h3 {
-            color: #764ba2;
-            margin: 1.5rem 0 1rem;
+        .subsection-title {
+            font-family: 'Prompt', sans-serif;
             font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
         }
 
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+        .nurse-tip {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-left: 5px solid var(--success);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 15px 15px 0;
+            position: relative;
         }
 
-        .stat-item {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            color: white;
+        .nurse-tip::before {
+            content: '👩‍⚕️';
+            position: absolute;
+            top: -15px;
+            left: 15px;
+            font-size: 2rem;
+            background: white;
+            padding: 0.3rem;
+            border-radius: 50%;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
+        .nurse-tip-title {
             font-weight: 700;
-        }
-
-        .stat-label {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        /* Risk Factors */
-        .risk-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .risk-item {
-            background: #f8f9ff;
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
-        }
-
-        .risk-item h4 {
-            color: #667eea;
+            color: #2E7D32;
             margin-bottom: 0.5rem;
         }
 
-        /* Symptoms */
-        .symptoms-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+        .warning-box {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-left: 5px solid var(--warning);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 15px 15px 0;
         }
 
-        .symptom {
+        .warning-box strong {
+            color: #E65100;
+        }
+
+        .danger-box {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            border-left: 5px solid var(--danger);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 15px 15px 0;
+            position: relative;
+        }
+
+        .danger-box::before {
+            content: '🚨';
+            position: absolute;
+            top: -15px;
+            left: 15px;
+            font-size: 1.8rem;
+            background: white;
+            padding: 0.3rem;
+            border-radius: 50%;
+        }
+
+        .danger-box strong {
+            color: #C62828;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 100%);
+            border-left: 5px solid var(--primary);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-left: 5px solid #2196F3;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .checklist-container {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .checklist-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.4rem;
+            color: #7B1FA2;
+            margin-bottom: 1.5rem;
+        }
+
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            background: white;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.8rem;
+            border-radius: 12px;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 1rem;
-            padding: 1rem;
-            background: #fff5f5;
-            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .symptom-icon {
-            width: 40px;
-            height: 40px;
-            background: #ff6b6b;
+        .checklist li:hover {
+            transform: translateX(5px);
+        }
+
+        .checklist li.checked {
+            background: #C8E6C9;
+        }
+
+        .checklist li.checked .checkbox {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .checklist li.checked .checkbox::after {
+            content: '✓';
+            color: white;
+        }
+
+        .checkbox {
+            width: 28px;
+            height: 28px;
+            border: 3px solid #9C27B0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
+            font-weight: 700;
+            font-size: 1.3rem;
             flex-shrink: 0;
         }
 
-        /* Food Section */
-        .food-container {
+        .step-content {
+            flex: 1;
+            padding-top: 0.5rem;
+        }
+
+        .step-content h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .handwash-section {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border: 3px solid #2196F3;
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .handwash-section::before {
+            content: '🧼 หัวใจสำคัญ!';
+            position: absolute;
+            top: -18px;
+            left: 30px;
+            background: #2196F3;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .handwash-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.5rem;
+            color: #1565C0;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .symptom-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .symptom-list li {
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            border-left: 4px solid var(--danger);
+        }
+
+        .symptom-list li::before {
+            content: '⚠️';
+        }
+
+        .food-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
             margin-top: 1.5rem;
         }
 
-        @media (max-width: 768px) {
-            .food-container {
+        @media (max-width: 600px) {
+            .food-grid {
                 grid-template-columns: 1fr;
             }
         }
 
+        .food-card {
+            padding: 1.5rem;
+            border-radius: 20px;
+        }
+
         .food-good {
-            background: #e8f5e9;
-            padding: 1.5rem;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
         }
 
-        .food-good h4 {
-            color: #2e7d32;
-            margin-bottom: 1rem;
+        .food-careful {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+        }
+
+        .food-avoid {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+        }
+
+        .food-card h4 {
             font-size: 1.2rem;
-        }
-
-        .food-bad {
-            background: #ffebee;
-            padding: 1.5rem;
-            border-radius: 15px;
-        }
-
-        .food-bad h4 {
-            color: #c62828;
             margin-bottom: 1rem;
-            font-size: 1.2rem;
         }
+
+        .food-good h4 { color: #2E7D32; }
+        .food-careful h4 { color: #F57F17; }
+        .food-avoid h4 { color: #C62828; }
 
         .food-list {
             list-style: none;
@@ -237,1019 +406,1001 @@
         .food-list li {
             padding: 0.5rem 0;
             border-bottom: 1px dashed rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .food-list li:last-child {
             border-bottom: none;
         }
 
-        /* Risk Calculator */
-        .calculator {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-top: 1.5rem;
-        }
-
-        .calc-question {
-            margin-bottom: 1.5rem;
-        }
-
-        .calc-question label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .calc-options {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .calc-option {
-            padding: 0.8rem 1.5rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-        }
-
-        .calc-option:hover {
-            border-color: #667eea;
-        }
-
-        .calc-option.selected {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
-        .calc-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .calc-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .result-box {
-            margin-top: 1.5rem;
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            display: none;
-        }
-
-        .result-low {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .result-medium {
-            background: #fff3e0;
-            color: #e65100;
-        }
-
-        .result-high {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-        .result-box h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Prevention Tips */
-        .prevention-grid {
+        .activity-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
 
-        .prevention-item {
+        .activity-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
             text-align: center;
-            padding: 2rem 1rem;
-            background: #f8f9ff;
-            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             transition: transform 0.3s;
         }
 
-        .prevention-item:hover {
+        .activity-card:hover {
             transform: translateY(-5px);
         }
 
-        .prevention-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 2rem;
-        }
-
-        .prevention-item h4 {
-            color: #667eea;
+        .activity-emoji {
+            font-size: 3rem;
             margin-bottom: 0.5rem;
         }
 
-        /* Stages */
-        .stages-container {
+        .activity-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-section {
+            background: linear-gradient(135deg, #EF5350 0%, #E53935 100%);
+            color: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .emergency-section h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .emergency-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: white;
+            color: var(--danger);
+            padding: 0.5rem 2rem;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #E0E0E0 0%, #BDBDBD 100%);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            border: 2px dashed #9E9E9E;
+        }
+
+        .image-placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .image-placeholder p {
+            color: #616161;
+            font-style: italic;
+        }
+
+        .record-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .record-table th {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .record-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #E0E0E0;
+            background: white;
+        }
+
+        .record-table input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .record-table input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .nutrition-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .nutrition-table th {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .nutrition-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #E0E0E0;
+            background: white;
+        }
+
+        .nutrition-table tr:nth-child(even) td {
+            background: #F5F5F5;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
             margin-top: 1.5rem;
         }
 
-        .stage {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            background: #f8f9ff;
-            border-radius: 15px;
-        }
-
-        .stage-number {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .stage-content h4 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .gfr-badge {
-            display: inline-block;
-            background: #e0e7ff;
-            color: #667eea;
-            padding: 0.3rem 0.8rem;
+        .benefit-card {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
             border-radius: 20px;
-            font-size: 0.85rem;
+            padding: 1.5rem;
+            border-left: 5px solid var(--success);
+        }
+
+        .benefit-card h4 {
+            color: #2E7D32;
+            margin-bottom: 0.8rem;
+        }
+
+        .exercise-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+        }
+
+        .exercise-card h4 {
+            color: var(--primary-dark);
             margin-bottom: 0.5rem;
         }
 
-        /* FAQ */
         .faq-item {
-            border-bottom: 1px solid #eee;
-            padding: 1.5rem 0;
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
         }
 
         .faq-question {
-            font-weight: 600;
-            color: #667eea;
+            padding: 1.5rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .faq-question:hover {
+            background: #F5F5F5;
         }
 
         .faq-answer {
-            margin-top: 1rem;
-            color: #666;
-            display: none;
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-
-        /* Emergency Box */
-        .emergency-box {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-top: 1.5rem;
-            text-align: center;
-        }
-
-        .emergency-box h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .emergency-number {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-
-        /* Footer */
-        .footer {
-            background: rgba(0,0,0,0.2);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-
-        /* Tabs */
-        .tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tab {
-            padding: 0.8rem 1.5rem;
-            background: #f0f0f0;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-family: inherit;
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
             transition: all 0.3s;
         }
 
-        .tab:hover {
-            background: #e0e0e0;
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem;
         }
 
-        .tab.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .footer {
+            background: var(--dark);
             color: white;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .stage {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        /* Progress indicator */
-        .egfr-calculator {
-            background: #f8f9ff;
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-top: 1rem;
-        }
-
-        .input-group {
-            margin-bottom: 1rem;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: inherit;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .egfr-result {
+            padding: 3rem 2rem;
             text-align: center;
+        }
+
+        .footer-disclaimer {
+            background: rgba(255,255,255,0.1);
             padding: 1.5rem;
-            background: white;
             border-radius: 15px;
-            margin-top: 1rem;
-            display: none;
+            max-width: 800px;
+            margin: 0 auto 2rem;
         }
 
-        .egfr-value {
-            font-size: 3rem;
+        .footer-credits {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--danger);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 25px rgba(239, 83, 80, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, var(--accent) 0%, var(--accent) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 90%;
+            padding: 0 0.2rem;
+        }
+
+        .important {
+            color: var(--danger);
             font-weight: 700;
-            color: #667eea;
         }
 
-        .egfr-unit {
-            color: #888;
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .hero-tagline { font-size: 1.1rem; }
+            .section-card { padding: 1.5rem; }
+            .step { flex-direction: column; text-align: center; }
+            .step-number { margin: 0 auto; }
         }
 
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card {
-            animation: fadeIn 0.5s ease-out;
+        @media print {
+            .header, .fab { display: none; }
+            .section-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <header class="header">
         <div class="nav-container">
-            <div class="logo">
-                คู่มือสุขภาพไต
-            </div>
+            <div class="logo">🫧 CAPD เพื่อนร่วมทาง</div>
             <ul class="nav-links">
-                <li><a href="#basics">ความรู้พื้นฐาน</a></li>
-                <li><a href="#risks">ปัจจัยเสี่ยง</a></li>
-                <li><a href="#symptoms">อาการ</a></li>
+                <li><a href="#benefits">ข้อดี CAPD</a></li>
                 <li><a href="#food">อาหาร</a></li>
-                <li><a href="#prevention">การป้องกัน</a></li>
-                <li><a href="#calculator">ประเมินความเสี่ยง</a></li>
+                <li><a href="#exercise">ออกกำลังกาย</a></li>
+                <li><a href="#wound-care">ดูแลแผล</a></li>
+                <li><a href="#warning-signs">สัญญาณเตือน</a></li>
+                <li><a href="#checklist">Checklist</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <h1>คู่มือสุขภาพไต</h1>
-        <p>แหล่งความรู้ครบวงจรเพื่อผู้ป่วยโรคไตและผู้ที่ต้องการดูแลสุขภาพไตอย่างถูกวิธี</p>
-    </section>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Stats -->
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">8 ล้าน</div>
-                <div class="stat-label">คนไทยป่วยโรคไตเรื้อรัง</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">17%</div>
-                <div class="stat-label">ของประชากรมีปัญหาไต</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">40,000+</div>
-                <div class="stat-label">ผู้ป่วยฟอกไตต่อปี</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">90%</div>
-                <div class="stat-label">ป้องกันได้หากรู้เร็ว</div>
+        <div class="hero-content">
+            <h1>🌟 CAPD เพื่อนร่วมทาง</h1>
+            <p class="hero-tagline">
+                คู่มือดูแลตัวเองสำหรับผู้ป่วยล้างไตทางช่องท้อง<br>
+                เพราะการดูแลไตไม่ใช่เรื่องยาก เมื่อเรารู้วิธี
+            </p>
+            <div class="hero-encouragement">
+                💪 <strong>CAPD เป็นเรื่องง่ายกว่าที่คิด</strong><br>
+                และคุณสามารถดูแลตัวเองได้อย่างมีความสุข
             </div>
         </div>
+    </section>
 
-        <!-- Basics Section -->
-        <section id="basics" class="card">
-            <h2>📚 ความรู้พื้นฐานเกี่ยวกับไต</h2>
+    <main class="main-content">
+
+        <!-- CAPD คืออะไร -->
+        <section class="section-card">
+            <span class="section-emoji">💡</span>
+            <h2 class="section-title">CAPD คืออะไร? เรามาเป็นเพื่อนกับไตกัน!</h2>
             
-            <h3>🫘 ไตคืออะไร?</h3>
-            <p>ไตเป็นอวัยวะรูปร่างคล้ายถั่วแดง มีจำนวน 2 ข้าง อยู่บริเวณหลังส่วนล่างใต้กระดูกซี่โครง แต่ละข้างมีขนาดประมาณกำปั้นมือ น้ำหนักประมาณ 150 กรัม</p>
-
-            <h3>🎯 หน้าที่ของไต</h3>
-            <div class="risk-grid">
-                <div class="risk-item">
-                    <h4>💧 กรองของเสีย</h4>
-                    <p>กรองของเสียและน้ำส่วนเกินออกจากเลือด ผลิตปัสสาวะวันละ 1-2 ลิตร</p>
-                </div>
-                <div class="risk-item">
-                    <h4>⚖️ รักษาสมดุล</h4>
-                    <p>ควบคุมสมดุลของน้ำ เกลือแร่ และความเป็นกรด-ด่างในร่างกาย</p>
-                </div>
-                <div class="risk-item">
-                    <h4>🩸 ผลิตฮอร์โมน</h4>
-                    <p>ผลิตฮอร์โมนที่ช่วยควบคุมความดันโลหิตและการสร้างเม็ดเลือดแดง</p>
-                </div>
-                <div class="risk-item">
-                    <h4>🦴 สร้างวิตามินดี</h4>
-                    <p>กระตุ้นวิตามินดีให้ทำงานเพื่อดูดซึมแคลเซียมสร้างกระดูก</p>
-                </div>
-            </div>
-
-            <h3>📊 ระยะของโรคไตเรื้อรัง (CKD Stages)</h3>
-            <div class="stages-container">
-                <div class="stage">
-                    <div class="stage-number">1</div>
-                    <div class="stage-content">
-                        <span class="gfr-badge">eGFR ≥ 90</span>
-                        <h4>ไตทำงานปกติแต่มีความผิดปกติ</h4>
-                        <p>มีหลักฐานความเสียหายของไต เช่น โปรตีนในปัสสาวะ แต่ไตยังกรองได้ปกติ</p>
-                    </div>
-                </div>
-                <div class="stage">
-                    <div class="stage-number">2</div>
-                    <div class="stage-content">
-                        <span class="gfr-badge">eGFR 60-89</span>
-                        <h4>ไตเสื่อมเล็กน้อย</h4>
-                        <p>การทำงานของไตลดลงเล็กน้อย มักไม่มีอาการ ควรปรับพฤติกรรม</p>
-                    </div>
-                </div>
-                <div class="stage">
-                    <div class="stage-number">3</div>
-                    <div class="stage-content">
-                        <span class="gfr-badge">eGFR 30-59</span>
-                        <h4>ไตเสื่อมปานกลาง</h4>
-                        <p>เริ่มมีอาการ เช่น อ่อนเพลีย บวม ต้องพบแพทย์และควบคุมอาหาร</p>
-                    </div>
-                </div>
-                <div class="stage">
-                    <div class="stage-number">4</div>
-                    <div class="stage-content">
-                        <span class="gfr-badge">eGFR 15-29</span>
-                        <h4>ไตเสื่อมรุนแรง</h4>
-                        <p>มีอาการชัดเจน ต้องเตรียมรับการบำบัดทดแทนไต</p>
-                    </div>
-                </div>
-                <div class="stage">
-                    <div class="stage-number">5</div>
-                    <div class="stage-content">
-                        <span class="gfr-badge">eGFR < 15</span>
-                        <h4>ไตวายระยะสุดท้าย</h4>
-                        <p>ต้องฟอกไตหรือปลูกถ่ายไต ไม่สามารถดำรงชีวิตได้โดยไม่มีการรักษา</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Risk Factors Section -->
-        <section id="risks" class="card">
-            <h2>⚠️ ปัจจัยเสี่ยงโรคไต</h2>
-            <p>การทราบปัจจัยเสี่ยงจะช่วยให้คุณป้องกันและดูแลตนเองได้ดียิ่งขึ้น</p>
-
-            <h3>🔴 ปัจจัยเสี่ยงที่ควบคุมไม่ได้</h3>
-            <div class="risk-grid">
-                <div class="risk-item">
-                    <h4>👴 อายุมากกว่า 60 ปี</h4>
-                    <p>การทำงานของไตลดลงตามธรรมชาติเมื่ออายุมากขึ้น</p>
-                </div>
-                <div class="risk-item">
-                    <h4>👨‍👩‍👧 ประวัติครอบครัว</h4>
-                    <p>มีญาติสายตรงเป็นโรคไต เบาหวาน หรือความดันโลหิตสูง</p>
-                </div>
-                <div class="risk-item">
-                    <h4>🧬 พันธุกรรม</h4>
-                    <p>บางโรคไตถ่ายทอดทางพันธุกรรม เช่น PKD</p>
-                </div>
-            </div>
-
-            <h3>🟡 ปัจจัยเสี่ยงที่ควบคุมได้</h3>
-            <div class="risk-grid">
-                <div class="risk-item">
-                    <h4>🍬 เบาหวาน</h4>
-                    <p>สาเหตุอันดับ 1 ของไตวาย น้ำตาลในเลือดสูงทำลายหลอดเลือดฝอยในไต</p>
-                </div>
-                <div class="risk-item">
-                    <h4>📈 ความดันโลหิตสูง</h4>
-                    <p>สาเหตุอันดับ 2 ความดันสูงทำให้หลอดเลือดในไตเสียหาย</p>
-                </div>
-                <div class="risk-item">
-                    <h4>🍔 โรคอ้วน</h4>
-                    <p>น้ำหนักเกินเพิ่มภาระการทำงานของไต</p>
-                </div>
-                <div class="risk-item">
-                    <h4>🚬 การสูบบุหรี่</h4>
-                    <p>ลดการไหลเวียนเลือดไปไตและทำให้หลอดเลือดแข็งตัว</p>
-                </div>
-                <div class="risk-item">
-                    <h4>💊 ยาแก้ปวด</h4>
-                    <p>การใช้ยา NSAIDs เป็นประจำทำลายไตอย่างเงียบๆ</p>
-                </div>
-                <div class="risk-item">
-                    <h4>🧂 กินเค็มจัด</h4>
-                    <p>โซเดียมเพิ่มความดันโลหิตและทำให้ไตทำงานหนัก</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Symptoms Section -->
-        <section id="symptoms" class="card">
-            <h2>🩺 อาการที่ควรสังเกต</h2>
-            <p>โรคไตระยะแรกมักไม่มีอาการ เมื่อมีอาการแสดงว่าไตเสียหายไปมากแล้ว</p>
-
-            <h3>🚨 อาการเตือนของโรคไต</h3>
-            <div class="symptoms-list">
-                <div class="symptom">
-                    <div class="symptom-icon">💤</div>
-                    <div>
-                        <strong>อ่อนเพลีย เหนื่อยง่าย</strong>
-                        <p>ไตผลิตฮอร์โมนสร้างเม็ดเลือดแดงลดลง ทำให้โลหิตจาง</p>
-                    </div>
-                </div>
-                <div class="symptom">
-                    <div class="symptom-icon">🦶</div>
-                    <div>
-                        <strong>บวมที่เท้า ข้อเท้า มือ หน้า</strong>
-                        <p>ไตไม่สามารถกำจัดน้ำและเกลือส่วนเกินได้</p>
-                    </div>
-                </div>
-                <div class="symptom">
-                    <div class="symptom-icon">🚽</div>
-                    <div>
-                        <strong>ปัสสาวะผิดปกติ</strong>
-                        <p>ปัสสาวะบ่อยตอนกลางคืน มีฟอง มีเลือดปน หรือปริมาณเปลี่ยนแปลง</p>
-                    </div>
-                </div>
-                <div class="symptom">
-                    <div class="symptom-icon">🤢</div>
-                    <div>
-                        <strong>คลื่นไส้ อาเจียน เบื่ออาหาร</strong>
-                        <p>ของเสียสะสมในเลือดทำให้ระบบทางเดินอาหารผิดปกติ</p>
-                    </div>
-                </div>
-                <div class="symptom">
-                    <div class="symptom-icon">🧠</div>
-                    <div>
-                        <strong>สมองล้า ความจำไม่ดี</strong>
-                        <p>ของเสียสะสมกระทบการทำงานของสมอง</p>
-                    </div>
-                </div>
-                <div class="symptom">
-                    <div class="symptom-icon">🦵</div>
-                    <div>
-                        <strong>ตะคริว กล้ามเนื้อกระตุก</strong>
-                        <p>ความไม่สมดุลของเกลือแร่ในร่างกาย</p>
-                    </div>
-                </div>
-                <div class="symptom">
-                    <div class="symptom-icon">😴</div>
-                    <div>
-                        <strong>นอนไม่หลับ หายใจลำบาก</strong>
-                        <p>น้ำคั่งในปอดและของเสียสะสม</p>
-                    </div>
-                </div>
-                <div class="symptom">
-                    <div class="symptom-icon">🎭</div>
-                    <div>
-                        <strong>ผิวแห้ง คัน</strong>
-                        <p>ของเสียและแร่ธาตุสะสมใต้ผิวหนัง</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="emergency-box">
-                <h3>🆘 อาการฉุกเฉิน ควรพบแพทย์ทันที</h3>
-                <p>หายใจลำบาก แน่นหน้าอก บวมมาก ปัสสาวะไม่ออก ซึมสับสน ชัก</p>
-                <div class="emergency-number">📞 1669</div>
-            </div>
-        </section>
-
-        <!-- Food Section -->
-        <section id="food" class="card">
-            <h2>🍽️ อาหารสำหรับผู้ป่วยโรคไต</h2>
-            <p>การควบคุมอาหารเป็นสิ่งสำคัญในการชะลอความเสื่อมของไต</p>
-
-            <div class="tabs">
-                <button class="tab active" onclick="showFoodTab('general')">หลักการทั่วไป</button>
-                <button class="tab" onclick="showFoodTab('protein')">โปรตีน</button>
-                <button class="tab" onclick="showFoodTab('sodium')">โซเดียม</button>
-                <button class="tab" onclick="showFoodTab('potassium')">โพแทสเซียม</button>
-                <button class="tab" onclick="showFoodTab('phosphorus')">ฟอสฟอรัส</button>
-            </div>
-
-            <div id="general" class="tab-content active">
-                <div class="food-container">
-                    <div class="food-good">
-                        <h4>✅ อาหารที่แนะนำ</h4>
-                        <ul class="food-list">
-                            <li>🥬 ผักใบเขียว (ต้มทิ้งน้ำ)</li>
-                            <li>🍚 ข้าวขาว แป้ง วุ้นเส้น</li>
-                            <li>🍎 ผลไม้น้ำตาลต่ำ เช่น แอปเปิ้ล ชมพู่</li>
-                            <li>🥚 ไข่ขาว</li>
-                            <li>🐟 ปลา (ในปริมาณที่เหมาะสม)</li>
-                            <li>🫒 น้ำมันมะกอก น้ำมันรำข้าว</li>
-                        </ul>
-                    </div>
-                    <div class="food-bad">
-                        <h4>❌ อาหารที่ควรหลีกเลี่ยง</h4>
-                        <ul class="food-list">
-                            <li>🧂 อาหารเค็มจัด หมักดอง</li>
-                            <li>🥫 อาหารกระป๋อง อาหารแปรรูป</li>
-                            <li>🍖 เนื้อสัตว์แดง เครื่องใน</li>
-                            <li>🍌 ผลไม้โพแทสเซียมสูง</li>
-                            <li>🥤 น้ำอัดลม เครื่องดื่มชูกำลัง</li>
-                            <li>🍺 เครื่องดื่มแอลกอฮอล์</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div id="protein" class="tab-content">
-                <h3>🥩 การจำกัดโปรตีน</h3>
-                <p>โปรตีนมากเกินไปทำให้ไตทำงานหนัก ผู้ป่วยโรคไตควรจำกัดโปรตีน 0.6-0.8 กรัม/กก./วัน</p>
-                <div class="food-container">
-                    <div class="food-good">
-                        <h4>✅ แหล่งโปรตีนที่ดี</h4>
-                        <ul class="food-list">
-                            <li>🐟 ปลาทะเล ปลาน้ำจืด</li>
-                            <li>🍗 อกไก่ไม่ติดหนัง</li>
-                            <li>🥚 ไข่ขาว (โปรตีนคุณภาพสูง)</li>
-                            <li>🫘 เต้าหู้ (ในปริมาณจำกัด)</li>
-                        </ul>
-                    </div>
-                    <div class="food-bad">
-                        <h4>❌ ควรหลีกเลี่ยง</h4>
-                        <ul class="food-list">
-                            <li>🥓 เนื้อแดง เนื้อติดมัน</li>
-                            <li>🫀 เครื่องในสัตว์</li>
-                            <li>🧀 ผลิตภัณฑ์นม</li>
-                            <li>🥜 ถั่วเปลือกแข็ง</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div id="sodium" class="tab-content">
-                <h3>🧂 การจำกัดโซเดียม</h3>
-                <p>ควรจำกัดโซเดียม < 2,000 มก./วัน (เกลือไม่เกิน 1 ช้อนชา)</p>
-                <div class="food-container">
-                    <div class="food-good">
-                        <h4>✅ ทางเลือกที่ดี</h4>
-                        <ul class="food-list">
-                            <li>🌿 ปรุงอาหารด้วยสมุนไพร</li>
-                            <li>🍋 ใช้มะนาว น้ำส้มสายชู</li>
-                            <li>🧄 กระเทียม หอมแดง ขิง</li>
-                            <li>🏠 ทำอาหารเองที่บ้าน</li>
-                        </ul>
-                    </div>
-                    <div class="food-bad">
-                        <h4>❌ อาหารโซเดียมสูง</h4>
-                        <ul class="food-list">
-                            <li>🍜 บะหมี่กึ่งสำเร็จรูป</li>
-                            <li>🥫 อาหารกระป๋อง น้ำซุปก้อน</li>
-                            <li>🥢 น้ำปลา ซีอิ๊ว ซอสปรุงรส</li>
-                            <li>🥓 อาหารหมักดอง แฮม ไส้กรอก</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div id="potassium" class="tab-content">
-                <h3>🍌 การจำกัดโพแทสเซียม</h3>
-                <p>ผู้ป่วยไตระยะ 3-5 ควรจำกัดโพแทสเซียม < 2,000 มก./วัน</p>
-                <div class="food-container">
-                    <div class="food-good">
-                        <h4>✅ โพแทสเซียมต่ำ</h4>
-                        <ul class="food-list">
-                            <li>🍎 แอปเปิ้ล ชมพู่ องุ่น</li>
-                            <li>🥒 แตงกวา ฟัก บวบ</li>
-                            <li>🥬 ผักกาดขาว กะหล่ำปลี</li>
-                            <li>🍚 ข้าวขาว ขนมปังขาว</li>
-                        </ul>
-                    </div>
-                    <div class="food-bad">
-                        <h4>❌ โพแทสเซียมสูง</h4>
-                        <ul class="food-list">
-                            <li>🍌 กล้วย ส้ม มะละกอ ทุเรียน</li>
-                            <li>🥔 มันฝรั่ง เผือก มันเทศ</li>
-                            <li>🥦 ผักโขม บร็อคโคลี่</li>
-                            <li>🥥 น้ำมะพร้าว กาแฟ ช็อกโกแลต</li>
-                        </ul>
-                    </div>
-                </div>
-                <p style="margin-top: 1rem; color: #666;"><strong>💡 เคล็ดลับ:</strong> ลดโพแทสเซียมในผักได้โดยหั่นชิ้นเล็ก แช่น้ำ 2 ชม. แล้วต้มทิ้งน้ำ</p>
-            </div>
-
-            <div id="phosphorus" class="tab-content">
-                <h3>🦴 การจำกัดฟอสฟอรัส</h3>
-                <p>ผู้ป่วยไตระยะ 3-5 ควรจำกัดฟอสฟอรัส < 800-1,000 มก./วัน</p>
-                <div class="food-container">
-                    <div class="food-good">
-                        <h4>✅ ฟอสฟอรัสต่ำ</h4>
-                        <ul class="food-list">
-                            <li>🍚 ข้าวขาว ขนมปังขาว</li>
-                            <li>🥬 ผักสด ผลไม้สด</li>
-                            <li>🍗 เนื้อไก่ ปลาสด</li>
-                            <li>🥚 ไข่ขาว</li>
-                        </ul>
-                    </div>
-                    <div class="food-bad">
-                        <h4>❌ ฟอสฟอรัสสูง</h4>
-                        <ul class="food-list">
-                            <li>🥛 นม ชีส โยเกิร์ต</li>
-                            <li>🥜 ถั่วทุกชนิด เมล็ดพืช</li>
-                            <li>🥤 น้ำอัดลมสีเข้ม</li>
-                            <li>🍫 ช็อกโกแลต โกโก้</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Prevention Section -->
-        <section id="prevention" class="card">
-            <h2>🛡️ การป้องกันและดูแลตนเอง</h2>
+            <p>การล้างไตทางช่องท้อง อาจฟังดูน่ากลัว แต่จริงๆ แล้วมันเป็นวิธีการรักษาที่ทำให้คุณ <span class="highlight">มีอิสระในการใช้ชีวิตมากขึ้น</span></p>
             
-            <div class="prevention-grid">
-                <div class="prevention-item">
-                    <div class="prevention-icon">💧</div>
-                    <h4>ดื่มน้ำเพียงพอ</h4>
-                    <p>วันละ 6-8 แก้ว ช่วยขับของเสีย (ยกเว้นผู้ป่วยที่ต้องจำกัดน้ำ)</p>
-                </div>
-                <div class="prevention-item">
-                    <div class="prevention-icon">🏃</div>
-                    <h4>ออกกำลังกาย</h4>
-                    <p>สัปดาห์ละ 150 นาที ควบคุมน้ำหนักและความดัน</p>
-                </div>
-                <div class="prevention-item">
-                    <div class="prevention-icon">🧂</div>
-                    <h4>ลดเค็ม</h4>
-                    <p>โซเดียมไม่เกิน 2,000 มก./วัน ลดภาระไต</p>
-                </div>
-                <div class="prevention-item">
-                    <div class="prevention-icon">🩺</div>
-                    <h4>ตรวจสุขภาพ</h4>
-                    <p>เจาะเลือด ตรวจปัสสาวะ ทุก 6-12 เดือน</p>
-                </div>
-                <div class="prevention-item">
-                    <div class="prevention-icon">💊</div>
-                    <h4>ระวังยา</h4>
-                    <p>ไม่ซื้อยากินเอง โดยเฉพาะยาแก้ปวด NSAIDs</p>
-                </div>
-                <div class="prevention-item">
-                    <div class="prevention-icon">🚭</div>
-                    <h4>งดบุหรี่ แอลกอฮอล์</h4>
-                    <p>ทำลายหลอดเลือดและเพิ่มความเสี่ยงโรคไต</p>
-                </div>
-                <div class="prevention-item">
-                    <div class="prevention-icon">📊</div>
-                    <h4>ควบคุมโรค</h4>
-                    <p>คุมเบาหวาน ความดัน ให้อยู่ในเกณฑ์</p>
-                </div>
-                <div class="prevention-item">
-                    <div class="prevention-icon">😴</div>
-                    <h4>พักผ่อนเพียงพอ</h4>
-                    <p>นอน 7-8 ชม. ลดความเครียด</p>
-                </div>
+            <p>ลองคิดว่าช่องท้องของคุณเป็นเหมือน <strong>"เครื่องกรองน้ำธรรมชาติ"</strong> ที่ร่างกายมี โดยเราจะใช้น้ำยาพิเศษเข้าไปช่วยดึงของเสียออกจากเลือดแทนไต</p>
+
+            <div class="image-placeholder">
+                <div class="image-placeholder-icon">🖼️</div>
+                <p>แนะนำใส่รูป: ผู้ป่วย CAPD กำลังยิ้มและทำกิจกรรมในชีวิตประจำวันอย่างมีความสุข</p>
             </div>
 
-            <h3>📋 ค่าที่ควรรู้สำหรับผู้ป่วยโรคไต</h3>
-            <div class="risk-grid">
-                <div class="risk-item">
-                    <h4>🩸 ความดันโลหิต</h4>
-                    <p>เป้าหมาย: < 130/80 mmHg</p>
-                </div>
-                <div class="risk-item">
-                    <h4>🍬 น้ำตาลในเลือด</h4>
-                    <p>ก่อนอาหาร: 80-130 mg/dL<br>HbA1c: < 7%</p>
-                </div>
-                <div class="risk-item">
-                    <h4>🫀 ไขมันในเลือด</h4>
-                    <p>LDL: < 100 mg/dL</p>
-                </div>
-                <div class="risk-item">
-                    <h4>⚖️ น้ำหนัก</h4>
-                    <p>BMI: 18.5-22.9</p>
-                </div>
+            <div class="nurse-tip">
+                <div class="nurse-tip-title">💬 คำแนะนำจากพยาบาล</div>
+                <p>CAPD ย่อมาจาก Continuous Ambulatory Peritoneal Dialysis หมายถึง การล้างไตทางช่องท้องแบบ <strong>"ต่อเนื่อง"</strong> ตลอด 24 ชั่วโมง 7 วันต่อสัปดาห์ ซึ่งเลียนแบบการทำงานของไตตามธรรมชาติได้ดีกว่าการฟอกเลือดแบบเป็นครั้งคราวค่ะ</p>
             </div>
         </section>
 
-        <!-- Risk Calculator Section -->
-        <section id="calculator" class="card">
-            <h2>📊 เครื่องมือประเมิน</h2>
-            
-            <div class="tabs">
-                <button class="tab active" onclick="showCalcTab('risk')">ประเมินความเสี่ยงโรคไต</button>
-                <button class="tab" onclick="showCalcTab('egfr')">คำนวณ eGFR</button>
+        <!-- ข้อดีของ CAPD -->
+        <section id="benefits" class="section-card">
+            <span class="section-emoji">✨</span>
+            <h2 class="section-title">ข้อดีของการล้างไตทางช่องท้องแบบต่อเนื่อง (CAPD)</h2>
+
+            <h3 class="subsection-title">🏠 1. เพิ่มความเป็นอิสระและคุณภาพชีวิต</h3>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h4>🏡 ทำได้เองที่บ้าน</h4>
+                    <p>สามารถทำการล้างไตได้เองที่บ้าน ที่ทำงาน หรือระหว่างเดินทาง โดยไม่ต้องเดินทางไปโรงพยาบาลหรือศูนย์ไตเทียมบ่อยครั้ง ทำให้ <strong>ประหยัดเวลาและค่าใช้จ่ายในการเดินทาง</strong></p>
+                </div>
+                <div class="benefit-card">
+                    <h4>⏰ ความยืดหยุ่นของตารางเวลา</h4>
+                    <p>สามารถปรับตารางการเปลี่ยนน้ำยาให้เข้ากับกิจวัตรประจำวันของผู้ป่วยได้ง่ายกว่าการฟอกเลือด (HD)</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>💼 คงสถานะการทำงาน</h4>
+                    <p>ผู้ป่วยหลายรายสามารถรักษาสถานะการทำงานหรือเรียนหนังสือได้ตามปกติ</p>
+                </div>
             </div>
 
-            <div id="risk" class="tab-content active">
-                <h3>🎯 แบบประเมินความเสี่ยงโรคไตเบื้องต้น</h3>
-                <p>ตอบคำถามต่อไปนี้เพื่อประเมินความเสี่ยง (ไม่สามารถใช้แทนการวินิจฉัยโดยแพทย์)</p>
+            <h3 class="subsection-title">💓 2. เสถียรภาพทางกายภาพและระบบหัวใจและหลอดเลือด</h3>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h4>🔄 การกำจัดของเสียอย่างต่อเนื่อง</h4>
+                    <p>CAPD เป็นการล้างไตแบบ <strong>"ต่อเนื่อง"</strong> ตลอด 24 ชั่วโมง 7 วันต่อสัปดาห์ ซึ่งเลียนแบบการทำงานของไตตามธรรมชาติได้ดีกว่าการฟอกเลือดแบบเป็นครั้งคราว</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>📈 การกำจัดน้ำและของเสียที่คงที่</h4>
+                    <p>การกำจัดน้ำและของเสียเกิดขึ้นอย่างช้าๆ สม่ำเสมอ ทำให้ <strong>ระดับความดันโลหิตมีความผันผวนน้อยกว่า</strong> และช่วยลดภาระต่อระบบหัวใจและหลอดเลือด</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>💉 ดีต่อหลอดเลือด</h4>
+                    <p>ไม่จำเป็นต้องเจาะหลอดเลือดขนาดใหญ่เพื่อสร้างเส้นฟอกไต (AVF/AVG) ทำให้หลอดเลือดดำและหลอดเลือดแดงได้รับการเก็บรักษาไว้สำหรับการรักษาอื่นๆ ในอนาคต</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">🍽️ 3. การควบคุมปริมาณน้ำและสารอาหาร</h3>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h4>💧 ควบคุมปริมาณน้ำได้ดีกว่า</h4>
+                    <p>เนื่องจากการล้างไตเกิดขึ้นทุกวัน ทำให้ผู้ป่วยสามารถควบคุมปริมาณน้ำในร่างกายได้ดีกว่า</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>🥩 ยืดหยุ่นด้านอาหาร</h4>
+                    <p>ผู้ป่วย CAPD มักจะได้รับอนุญาตให้รับประทานอาหารที่มี <strong>โปรตีนสูงขึ้น</strong> และมักจะ <strong>จำกัดโพแทสเซียมได้น้อยกว่า</strong> ผู้ป่วยฟอกเลือด เนื่องจากมีการกำจัดออกอย่างต่อเนื่อง</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">🏥 4. ข้อดีทางการแพทย์อื่นๆ</h3>
+            <div class="success-box">
+                <p>🌟 <strong>รักษาการทำงานของไตที่เหลืออยู่:</strong> การล้างไตอย่างช้าๆ สม่ำเสมออาจช่วยรักษาการทำงานของไตที่เหลืออยู่ (Residual Renal Function) ของผู้ป่วยได้นานกว่าการฟอกเลือดในบางกรณี!</p>
+            </div>
+        </section>
+
+        <!-- อาหาร -->
+        <section id="food" class="section-card">
+            <span class="section-emoji">🍎</span>
+            <h2 class="section-title">การรับประทานอาหารสำหรับผู้ป่วย CAPD</h2>
+
+            <p>การรับประทานอาหารที่เหมาะสมช่วยให้ร่างกายแข็งแรง ป้องกันภาวะขาดสารอาหาร และลดภาวะแทรกซ้อน</p>
+
+            <div class="info-box">
+                <p>🎯 <strong>เป้าหมายโภชนาการในผู้ป่วย CAPD:</strong></p>
+                <p>1. ป้องกันและแก้ไขภาวะทุพโภชนาการและ PEW (protein-energy wasting)</p>
+                <p>2. รักษามวลกล้ามเนื้อและน้ำหนักให้อยู่ในช่วงเหมาะสม</p>
+                <p>3. ควบคุมเกลือ น้ำ โพแทสเซียม ฟอสฟอรัส แคลเซียม ให้อยู่ในเกณฑ์</p>
+                <p>4. ลดความเสี่ยงโรคหัวใจและหลอดเลือด ไขมันในเลือดสูง และภาวะแทรกซ้อนจากน้ำยา (เช่น น้ำตาล/ไขมันสูง น้ำหนักขึ้น)</p>
+            </div>
+
+            <h3 class="subsection-title">⚡ 1. พลังงานและโปรตีน</h3>
+            
+            <table class="nutrition-table">
+                <tr>
+                    <th>สารอาหาร</th>
+                    <th>ปริมาณที่แนะนำ</th>
+                </tr>
+                <tr>
+                    <td><strong>พลังงานรวม</strong></td>
+                    <td><strong>25-35 กิโลแคลอรี/กก./วัน</strong> (ขึ้นกับอายุ กิจกรรม และภาวะโภชนาการ)</td>
+                </tr>
+                <tr>
+                    <td><strong>โปรตีน</strong></td>
+                    <td><strong>1.2-1.3 กรัม/กก.น้ำหนักอุดมคติ/วัน</strong><br>อย่างน้อย ≥50% เป็นโปรตีนคุณภาพสูง (HBV)</td>
+                </tr>
+            </table>
+
+            <div class="success-box">
+                <p>💪 <strong>ทำไมต้องกินโปรตีนเยอะ?</strong></p>
+                <p>ผู้ป่วย CAPD สูญเสียกรดอะมิโนและโปรตีนออกมากับน้ำยาทุกวัน (โดยเฉพาะตอนมี "ภาวะติดเชื้อที่ช่องท้อง") จึงต้องกินโปรตีนสูงกว่าคนทั่วไป</p>
+                <p><strong>โปรตีนคุณภาพสูง:</strong> เนื้อสัตว์ ไข่ นม ปลา ถั่วเหลือง</p>
+            </div>
+
+            <div class="warning-box">
+                <p>⚠️ <strong>กรณีมีภาวะติดเชื้อที่ช่องท้อง (Peritonitis) หรือภาวะ catabolic สูง:</strong> อาจต้องเพิ่มโปรตีนเป็น <strong>1.5-1.7 กรัม/กก./วัน</strong> ชั่วคราว ตามคำแนะนำแพทย์</p>
+            </div>
+
+            <h3 class="subsection-title">🧂 2. โซเดียม (เกลือ)</h3>
+            
+            <div class="danger-box">
+                <p><strong class="important">จำกัดโซเดียม < 2 กรัม/วัน</strong></p>
+                <p>เท่ากับเกลือแกง (NaCl) ประมาณ <strong>~1 ช้อนชา/วัน (ประมาณ 5 กรัม)</strong></p>
+            </div>
+
+            <div class="food-grid">
+                <div class="food-avoid">
+                    <h4>❌ อาหารที่ต้องหลีกเลี่ยง</h4>
+                    <ul class="food-list">
+                        <li>🧂 น้ำปลา ซีอิ๊ว เต้าเจี้ยว ปลาร้า</li>
+                        <li>🌭 ไส้กรอก แหนม</li>
+                        <li>🍜 บะหมี่กึ่งสำเร็จรูป</li>
+                        <li>🥫 อาหารแปรรูปทุกชนิด</li>
+                    </ul>
+                </div>
+                <div class="food-good">
+                    <h4>✅ ทางเลือกที่ดี</h4>
+                    <ul class="food-list">
+                        <li>🌿 ใช้สมุนไพร/เครื่องเทศเพิ่มรสแทนเกลือ</li>
+                        <li>🧄 หอม กระเทียม พริกไทย</li>
+                        <li>🍋 มะนาว</li>
+                        <li>📋 อ่านฉลากโภชนาการ เลือกผลิตภัณฑ์ที่โซเดียม < 140 mg ต่อหน่วยบริโภค</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">💧 3. น้ำ</h3>
+            <div class="info-box">
+                <p>ควรดื่มน้ำรวม (น้ำ + เครื่องดื่ม + ซุป + น้ำในผลไม้) ประมาณ <strong>30-35 มล./กก.น้ำหนักอุดมคติ/วัน</strong></p>
+                <p>และปรับตามปริมาณปัสสาวะ ปริมาณ UF จาก PD และภาวะบวมของผู้ป่วย</p>
+            </div>
+
+            <h3 class="subsection-title">🍌 4. โพแทสเซียม</h3>
+            
+            <div class="nurse-tip">
+                <div class="nurse-tip-title">💬 คำแนะนำจากพยาบาล</div>
+                <p>น้ำยา PD สูตรมาตรฐาน <strong>ไม่มีโพแทสเซียม</strong> → ผู้ป่วย CAPD จำนวนมากมีแนวโน้มโพแทสเซียมต่ำ</p>
+                <p>แนะนำให้ปรับการกินอาหารที่มีโพแทสเซียมตามระดับ K ในเลือด <strong>เป้าหมายคือให้ K อยู่ในเกณฑ์ปกติ</strong></p>
+            </div>
+
+            <div class="food-grid">
+                <div class="food-good">
+                    <h4>✅ K ปกติหรือต่ำ - กินได้</h4>
+                    <ul class="food-list">
+                        <li>🍎 แอปเปิ้ล ชมพู่ ฝรั่ง</li>
+                        <li>🍉 แตงโม แตงกวา</li>
+                        <li>🎃 ฟักทองต้ม</li>
+                        <li>🥬 ผักผลไม้ไทยได้วันละ 2-3 ส่วน</li>
+                        <li>💡 ไม่จำเป็นต้องห้ามผักผลไม้ทั้งหมด!</li>
+                    </ul>
+                </div>
+                <div class="food-careful">
+                    <h4>⚠️ K สูง (>5.5 mEq/L) - ต้องลด</h4>
+                    <ul class="food-list">
+                        <li>🍌 กล้วยน้ำว้า</li>
+                        <li>🍊 น้ำส้มคั้น น้ำผลไม้เข้มข้น</li>
+                        <li>🥔 มันฝรั่ง มันเทศ</li>
+                        <li>🥥 น้ำมะพร้าว ทุเรียน</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">🦴 5. ฟอสฟอรัส</h3>
+            
+            <div class="warning-box">
+                <p><strong>จำกัดฟอสฟอรัส:</strong> 5-10 มก./กก.น้ำหนักอุดมคติ/วัน แต่ <strong>ไม่เกิน 800 มก./วัน</strong></p>
+                <p>ควบคู่กับการใช้ยาจับฟอสเฟต (phosphate binders) และติดตามค่าฟอสฟอรัสในเลือด</p>
+            </div>
+
+            <div class="food-grid">
+                <div class="food-avoid">
+                    <h4>❌ อาหารฟอสฟอรัสสูง - ต้องระวัง</h4>
+                    <ul class="food-list">
+                        <li>🥛 นมวัวเต็มมัน เนย ชีส โยเกิร์ตปริมาณมาก</li>
+                        <li>🫀 เครื่องในสัตว์</li>
+                        <li>🐟 ปลาตัวเล็กกินทั้งก้าง (ปลาซิว ปลาข้าวสาร)</li>
+                        <li>🥜 ถั่วเมล็ดแห้ง/ธัญพืชบางชนิดในปริมาณมาก</li>
+                        <li>🌭 อาหารแปรรูปที่มี phosphate แฝง (ไส้กรอก แฮม นักเก็ต)</li>
+                    </ul>
+                </div>
+                <div class="food-good">
+                    <h4>✅ ทางเลือกที่ดี</h4>
+                    <ul class="food-list">
+                        <li>🍚 ข้าวสวย ข้าวต้ม</li>
+                        <li>🥬 ผักสด ผลไม้สด</li>
+                        <li>🍗 เนื้อไก่ ปลาสด</li>
+                        <li>🥚 ไข่ขาว</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">🍚 6. คาร์โบไฮเดรต</h3>
+            <div class="info-box">
+                <p>• เลือก <strong>แป้งเชิงซ้อน:</strong> ข้าวสวย/ข้าวต้ม ข้าวไม่ขัดสีในปริมาณที่เหมาะ (ต้องระวังฟอสฟอรัสในข้าวกล้อง)</p>
+                <p>• <strong>ลดน้ำตาลทราย</strong> เครื่องดื่มหวาน ขนมหวาน เนื่องจากได้คาร์บจากน้ำยา PD อยู่แล้ว</p>
+                <p>• <strong>ผู้ป่วยเบาหวาน</strong> ต้องปรับคาร์บจากอาหารให้น้อยลง และปรับยา/อินซูลินตามคำแนะนำแพทย์</p>
+            </div>
+
+            <h3 class="subsection-title">🥑 7. ไขมัน</h3>
+            <div class="nurse-tip">
+                <div class="nurse-tip-title">💬 คำแนะนำจากพยาบาล</div>
+                <p>แนะนำให้ลดไขมันอิ่มตัว <strong><7% ของพลังงาน</strong> และไขมันไม่อิ่มตัวหลายตำแหน่ง <strong>ไม่เกิน 10% ของพลังงาน/วัน</strong> เพื่อควบคุมไขมันในเลือด</p>
+            </div>
+
+            <div class="food-grid">
+                <div class="food-good">
+                    <h4>✅ ไขมันดี</h4>
+                    <ul class="food-list">
+                        <li>🐟 ปลา (โอเมก้า 3)</li>
+                        <li>🥜 ถั่วเปลือกแข็ง (เล็กน้อย)</li>
+                        <li>🫒 น้ำมันพืช (รำข้าว ถั่วเหลือง มะกอก)</li>
+                    </ul>
+                </div>
+                <div class="food-avoid">
+                    <h4>❌ ควรลด</h4>
+                    <ul class="food-list">
+                        <li>🍟 ของทอด</li>
+                        <li>🍗 หนังไก่ หมูสามชั้น</li>
+                        <li>🍔 อาหารฟาสต์ฟู้ด</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">💊 8. วิตามิน</h3>
+            <div class="info-box">
+                <p>• วิตามินที่ละลายในน้ำ: ได้จากอาหารปกติ + พิจารณาเสริม <strong>วิตามิน B6 10 มก./วัน</strong> และ <strong>วิตามิน C 100 มก./วัน</strong> ถ้ากินอาหารได้น้อย</p>
+                <p>• <strong>ไม่แนะนำ</strong>ให้วิตามิน A, E, K เสริมเป็นประจำ เพราะเสี่ยงสะสม</p>
+            </div>
+
+            <div class="image-placeholder">
+                <div class="image-placeholder-icon">🖼️</div>
+                <p>แนะนำใส่รูป: จานอาหารตัวอย่างที่เหมาะกับผู้ป่วย CAPD</p>
+            </div>
+        </section>
+
+        <!-- การออกกำลังกาย -->
+        <section id="exercise" class="section-card">
+            <span class="section-emoji">🏃</span>
+            <h2 class="section-title">การออกกำลังกาย</h2>
+
+            <p>การออกกำลังกายที่เหมาะสมที่สุดสำหรับผู้ป่วยที่ล้างไตทางช่องท้องควรเน้นที่ <strong>ระดับเบาถึงปานกลาง</strong> โดยทำอย่างสม่ำเสมอ</p>
+
+            <div class="warning-box">
+                <p>⚠️ <strong>สำคัญ:</strong> ต้องได้รับคำแนะนำจากแพทย์หรือนักกายภาพบำบัดก่อนเริ่มโปรแกรมการออกกำลังกาย</p>
+            </div>
+
+            <h3 class="subsection-title">🚴 การออกกำลังกายแบบแอโรบิก (Aerobic Exercise)</h3>
+            <p>ช่วยเสริมสร้างสมรรถภาพปอดและหัวใจ</p>
+            
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <div class="activity-emoji">🚶</div>
+                    <h4>เดินสบายๆ หรือเดินเร็ว</h4>
+                    <p>เป็นกิจกรรมที่ปลอดภัยและทำได้ง่ายที่สุด</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-emoji">🚲</div>
+                    <h4>ปั่นจักรยาน</h4>
+                    <p>ทั้งแบบอยู่กับที่หรือแบบทั่วไป (ระวังความปลอดภัยในการขับขี่)</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-emoji">🏊</div>
+                    <h4>ว่ายน้ำ</h4>
+                    <p>ต้องปรึกษาแพทย์อย่างละเอียดเกี่ยวกับสุขอนามัยของสายล้างไตเพื่อป้องกันการติดเชื้อ</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-emoji">💃</div>
+                    <h4>เต้นแอโรบิกเบาๆ</h4>
+                    <p>สนุกและได้ออกกำลังกาย</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">💪 การออกกำลังกายเพื่อเพิ่มความแข็งแรงของกล้ามเนื้อ (Strength Training)</h3>
+            <p>ควรใช้ท่าบริหารที่ <strong>ไม่เพิ่มแรงดันในช่องท้องมากเกินไป</strong></p>
+
+            <div class="exercise-card">
+                <h4>🏋️ ท่าที่แนะนำ</h4>
+                <p>• <strong>บริหารกล้ามเนื้อหัวไหล่:</strong> เช่น การยกแขน กางแขน</p>
+                <p>• <strong>บริหารกล้ามเนื้อต้นขาและสะโพก:</strong> เช่น การลุก-นั่ง หรือบริหารในท่านอน</p>
+                <p>• <strong>การออกกำลังกายด้วยยางยืด:</strong> เพื่อสร้างแรงต้านเบาๆ</p>
+            </div>
+
+            <h3 class="subsection-title">📋 คำแนะนำทั่วไป</h3>
+            <table class="nutrition-table">
+                <tr>
+                    <th>หัวข้อ</th>
+                    <th>คำแนะนำ</th>
+                </tr>
+                <tr>
+                    <td><strong>ความถี่</strong></td>
+                    <td>ควรออกกำลังกายอย่างน้อย <strong>3-5 วันต่อสัปดาห์</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>ระยะเวลา</strong></td>
+                    <td>เริ่มจากช่วงสั้นๆ ค่อยๆ เพิ่มจนได้ <strong>30-60 นาที/วัน</strong><br>รวมอย่างน้อย <strong>150 นาที/สัปดาห์</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>ความหนัก</strong></td>
+                    <td>ระดับ <strong>เบาถึงปานกลาง</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>ช่วงเวลา</strong></td>
+                    <td>ทำได้ทั้งตอนมีหรือไม่มีน้ำยาในช่องท้อง<br>แต่ควรทดลองและสังเกตอาการ</td>
+                </tr>
+            </table>
+
+            <h3 class="subsection-title">⚠️ ข้อควรระวังที่สำคัญ</h3>
+
+            <div class="danger-box">
+                <p><strong class="important">❌ หลีกเลี่ยงกิจกรรมที่เพิ่มแรงดันในช่องท้องสูง:</strong></p>
+                <p>• การยกน้ำหนักที่หนักมาก</p>
+                <p>• การซิทอัพ</p>
+                <p>• กีฬาที่มีการปะทะรุนแรง</p>
+                <p>ซึ่งอาจส่งผลต่อสายล้างไตหรือผนังหน้าท้อง</p>
+            </div>
+
+            <div class="nurse-tip">
+                <div class="nurse-tip-title">💬 คำแนะนำจากพยาบาล</div>
+                <p><strong>หยุดพักทันทีหากมีอาการผิดปกติ:</strong> หากรู้สึกเหนื่อยผิดปกติ วิงเวียนศีรษะ หรือเจ็บปวดบริเวณหน้าท้อง ควรรีบหยุดพักและปรึกษาแพทย์</p>
+                <p style="margin-top: 0.5rem;"><strong>รักษาสุขอนามัยของสายล้างไต:</strong> ดูแลความสะอาดบริเวณตำแหน่งที่ใส่สายอย่างเคร่งครัดเพื่อป้องกันการติดเชื้อขณะออกกำลังกาย โดยเฉพาะหากมีการว่ายน้ำค่ะ</p>
+            </div>
+
+            <div class="image-placeholder">
+                <div class="image-placeholder-icon">🖼️</div>
+                <p>แนะนำใส่รูป: ผู้ป่วย CAPD กำลังออกกำลังกายเบาๆ เช่น เดินในสวน ปั่นจักรยานอยู่กับที่ ยืดเหยียดร่างกาย</p>
+            </div>
+        </section>
+
+        <!-- การดูแลแผล -->
+        <section id="wound-care" class="section-card">
+            <span class="section-emoji">🩹</span>
+            <h2 class="section-title">การดูแลแผลและท่อล้างไต</h2>
+
+            <div class="handwash-section">
+                <h3 class="handwash-title">🧼 ขั้นตอนการล้างมือ - ทำทุกครั้งก่อนเปลี่ยนน้ำยา!</h3>
                 
-                <div class="calculator" id="riskCalculator">
-                    <div class="calc-question">
-                        <label>1. อายุของคุณ</label>
-                        <div class="calc-options">
-                            <div class="calc-option" data-q="age" data-score="0">ต่ำกว่า 40 ปี</div>
-                            <div class="calc-option" data-q="age" data-score="1">40-59 ปี</div>
-                            <div class="calc-option" data-q="age" data-score="2">60 ปีขึ้นไป</div>
-                        </div>
+                <p>การล้างมือคือ <span class="highlight">"หัวใจสำคัญที่สุด"</span> ในการป้องกันการติดเชื้อ!</p>
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>ทำมือเปียก</h4>
+                        <p>ใช้น้ำสะอาดไหลผ่าน อย่าแช่มือในอ่าง</p>
                     </div>
-                    
-                    <div class="calc-question">
-                        <label>2. คุณเป็นเบาหวานหรือไม่?</label>
-                        <div class="calc-options">
-                            <div class="calc-option" data-q="diabetes" data-score="0">ไม่เป็น</div>
-                            <div class="calc-option" data-q="diabetes" data-score="2">เป็น/ไม่แน่ใจ</div>
-                        </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>ฟอกสบู่ให้ทั่ว</h4>
+                        <p>ฝ่ามือ หลังมือ ซอกนิ้ว ใต้เล็บ ข้อมือ <strong>อย่างน้อย 20 วินาที</strong></p>
                     </div>
-                    
-                    <div class="calc-question">
-                        <label>3. คุณเป็นความดันโลหิตสูงหรือไม่?</label>
-                        <div class="calc-options">
-                            <div class="calc-option" data-q="bp" data-score="0">ไม่เป็น</div>
-                            <div class="calc-option" data-q="bp" data-score="2">เป็น/ไม่แน่ใจ</div>
-                        </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>ล้างน้ำให้สะอาด</h4>
+                        <p>ล้างจนไม่มีฟองสบู่</p>
                     </div>
-                    
-                    <div class="calc-question">
-                        <label>4. มีประวัติโรคไตในครอบครัวหรือไม่?</label>
-                        <div class="calc-options">
-                            <div class="calc-option" data-q="family" data-score="0">ไม่มี</div>
-                            <div class="calc-option" data-q="family" data-score="1">มี/ไม่แน่ใจ</div>
-                        </div>
-                    </div>
-                    
-                    <div class="calc-question">
-                        <label>5. สูบบุหรี่หรือไม่?</label>
-                        <div class="calc-options">
-                            <div class="calc-option" data-q="smoke" data-score="0">ไม่สูบ</div>
-                            <div class="calc-option" data-q="smoke" data-score="1">สูบเป็นครั้งคราว</div>
-                            <div class="calc-option" data-q="smoke" data-score="2">สูบเป็นประจำ</div>
-                        </div>
-                    </div>
-                    
-                    <div class="calc-question">
-                        <label>6. น้ำหนักของคุณ</label>
-                        <div class="calc-options">
-                            <div class="calc-option" data-q="weight" data-score="0">ปกติ (BMI 18.5-22.9)</div>
-                            <div class="calc-option" data-q="weight" data-score="1">น้ำหนักเกิน</div>
-                            <div class="calc-option" data-q="weight" data-score="2">อ้วน</div>
-                        </div>
-                    </div>
-                    
-                    <div class="calc-question">
-                        <label>7. กินเค็มบ่อยแค่ไหน?</label>
-                        <div class="calc-options">
-                            <div class="calc-option" data-q="salt" data-score="0">น้อย/ปกติ</div>
-                            <div class="calc-option" data-q="salt" data-score="1">ค่อนข้างบ่อย</div>
-                            <div class="calc-option" data-q="salt" data-score="2">เค็มจัดเป็นประจำ</div>
-                        </div>
-                    </div>
-                    
-                    <div class="calc-question">
-                        <label>8. ดื่มน้ำเพียงพอหรือไม่? (6-8 แก้ว/วัน)</label>
-                        <div class="calc-options">
-                            <div class="calc-option" data-q="water" data-score="0">เพียงพอ</div>
-                            <div class="calc-option" data-q="water" data-score="1">ไม่แน่ใจ/น้อยกว่า</div>
-                        </div>
-                    </div>
-                    
-                    <button class="calc-btn" onclick="calculateRisk()">ประเมินความเสี่ยง</button>
-                    
-                    <div class="result-box" id="riskResult">
-                        <h3></h3>
-                        <p></p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>เช็ดมือให้แห้ง</h4>
+                        <p>ใช้ผ้าสะอาดหรือทิชชู่</p>
                     </div>
                 </div>
             </div>
 
-            <div id="egfr" class="tab-content">
-                <h3>🔬 คำนวณค่า eGFR (อัตราการกรองของไต)</h3>
-                <p>กรอกค่า Creatinine จากผลตรวจเลือดเพื่อคำนวณ eGFR</p>
-                
-                <div class="egfr-calculator">
-                    <div class="input-group">
-                        <label>อายุ (ปี)</label>
-                        <input type="number" id="egfrAge" placeholder="เช่น 45">
-                    </div>
-                    <div class="input-group">
-                        <label>เพศ</label>
-                        <select id="egfrGender">
-                            <option value="">เลือกเพศ</option>
-                            <option value="male">ชาย</option>
-                            <option value="female">หญิง</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label>ค่า Creatinine (mg/dL)</label>
-                        <input type="number" step="0.01" id="egfrCreatinine" placeholder="เช่น 1.2">
-                    </div>
-                    
-                    <button class="calc-btn" onclick="calculateEGFR()">คำนวณ eGFR</button>
-                    
-                    <div class="egfr-result" id="egfrResult">
-                        <div class="egfr-value">--</div>
-                        <div class="egfr-unit">mL/min/1.73m²</div>
-                        <p id="egfrStage"></p>
-                    </div>
+            <div class="danger-box">
+                <p><strong class="important">⚠️ ย้ำอีกครั้ง! การล้างมือคือหัวใจสำคัญ</strong></p>
+                <p>ทุกครั้งก่อนเปลี่ยนน้ำยา ต้องล้างมืออย่างถูกวิธี นี่คือวิธีป้องกัน "ภาวะติดเชื้อที่ช่องท้อง" ที่ดีที่สุด!</p>
+            </div>
+
+            <h3 class="subsection-title">👀 อาการติดเชื้อที่แผลหน้าท้อง</h3>
+            <ul class="symptom-list">
+                <li><strong>บวมแดง</strong>รอบๆ แผลหน้าท้อง</li>
+                <li><strong>ปวดเมื่อสัมผัส</strong>บริเวณรอบท่อล้างไต</li>
+                <li><strong>มีหนองหรือเลือดไหล</strong>ออกจากแผล</li>
+                <li>พบ<strong>คราบเลือดหรือหนอง</strong>ติดที่ผ้าก๊อซ</li>
+                <li>พบ<strong>เนื้อเยื่ออ่อนขึ้น</strong>บริเวณปากแผล</li>
+            </ul>
+
+            <div class="danger-box">
+                <p><strong class="important">🚨 หากมีความผิดปกติ ให้มาพบแพทย์ทันที!</strong></p>
+            </div>
+        </section>
+
+        <!-- น้ำยาเก่า -->
+        <section class="section-card">
+            <span class="section-emoji">🔍</span>
+            <h2 class="section-title">การตรวจดู "น้ำยาเก่า"</h2>
+
+            <div class="danger-box">
+                <p><strong class="important">⚠️ สำคัญมาก! น้ำยาเก่าต้องใส</strong></p>
+                <p><strong>หากขุ่น มีสีแปลกไป หรือมีเส้นใยลอย ต้องรีบแจ้งแพทย์ทันที!</strong></p>
+            </div>
+
+            <div class="food-grid">
+                <div class="food-good">
+                    <h4>✅ ปกติ</h4>
+                    <ul class="food-list">
+                        <li>🟡 ใส สีเหลืองอ่อน</li>
+                        <li>💧 ไม่มีตะกอน</li>
+                        <li>✨ มองทะลุได้</li>
+                    </ul>
+                </div>
+                <div class="food-avoid">
+                    <h4>🚨 ผิดปกติ - แจ้งแพทย์</h4>
+                    <ul class="food-list">
+                        <li>☁️ ขุ่น มองไม่ทะลุ</li>
+                        <li>🔴 สีแดง/ชมพู (เลือดปน)</li>
+                        <li>🟤 สีน้ำตาล/เขียว</li>
+                        <li>🧵 มีเส้นใย ตะกอน</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="image-placeholder">
+                <div class="image-placeholder-icon">🖼️</div>
+                <p>แนะนำใส่รูป: เปรียบเทียบสีน้ำยาเก่าปกติ vs ผิดปกติ</p>
+            </div>
+        </section>
+
+        <!-- สัญญาณเตือน -->
+        <section id="warning-signs" class="section-card">
+            <span class="section-emoji">🚨</span>
+            <h2 class="section-title">อาการที่ต้องพบแพทย์</h2>
+
+            <h3 class="subsection-title">🦠 การติดเชื้อบริเวณทางออกของสาย</h3>
+            <ul class="symptom-list">
+                <li>มีรอยแดง ปวด บวม หรือ <strong>มีหนอง</strong></li>
+                <li><strong>น้ำยาที่ออกมามีสีผิดปกติหรือขุ่น</strong></li>
+            </ul>
+
+            <h3 class="subsection-title">🔥 อาการของ "ภาวะติดเชื้อที่ช่องท้อง"</h3>
+            <ul class="symptom-list">
+                <li><strong>ปวดท้อง</strong></li>
+                <li><strong>มีไข้</strong></li>
+                <li>คลื่นไส้หรืออาเจียน</li>
+                <li><strong>น้ำยาที่ออกจากช่องท้องขุ่น</strong></li>
+            </ul>
+
+            <h3 class="subsection-title">💧 สัญญาณของภาวะน้ำเกิน</h3>
+            <ul class="symptom-list">
+                <li><strong>บวมตามร่างกาย</strong> เช่น หน้า เปลือกตา</li>
+                <li><strong>หายใจเหนื่อย หายใจลำบาก</strong></li>
+                <li>นอนราบไม่ได้</li>
+                <li><strong>น้ำหนักเพิ่มผิดปกติ</strong></li>
+            </ul>
+
+            <h3 class="subsection-title">⚡ อาการอื่นๆ</h3>
+            <ul class="symptom-list">
+                <li>ปัสสาวะ < 500 ซีซี/วัน หรือไม่มีเลย</li>
+                <li>ปวดศีรษะ ตาพร่ามัว</li>
+                <li>เบื่ออาหาร</li>
+                <li><strong>น้ำยาไหลเข้า-ออกช้าลง</strong></li>
+            </ul>
+
+            <div class="emergency-section">
+                <h3>📞 เบอร์ฉุกเฉินที่ต้องจำ</h3>
+                <div class="emergency-number">1669</div>
+                <p>หรือเบอร์โรงพยาบาลที่ดูแลท่าน: ________________</p>
+            </div>
+        </section>
+
+        <!-- Checklist -->
+        <section id="checklist" class="section-card">
+            <span class="section-emoji">✅</span>
+            <h2 class="section-title">Checklist ประจำวัน</h2>
+
+            <div class="checklist-container">
+                <h3 class="checklist-title">📋 รายการตรวจสอบประจำวัน</h3>
+                <ul class="checklist" id="dailyChecklist">
+                    <li onclick="toggleCheck(this)">
+                        <span class="checkbox"></span>
+                        <span>ชั่งน้ำหนักแล้ว และบันทึกลงสมุด</span>
+                    </li>
+                    <li onclick="toggleCheck(this)">
+                        <span class="checkbox"></span>
+                        <span>วัดความดันโลหิตแล้ว (ถ้ามีเครื่อง)</span>
+                    </li>
+                    <li onclick="toggleCheck(this)">
+                        <span class="checkbox"></span>
+                        <span>ตรวจน้ำยาเก่าแล้ว - <strong>ใสดี ไม่ขุ่น</strong></span>
+                    </li>
+                    <li onclick="toggleCheck(this)">
+                        <span class="checkbox"></span>
+                        <span>บันทึกปริมาณน้ำยาเข้า-ออกแล้ว</span>
+                    </li>
+                    <li onclick="toggleCheck(this)">
+                        <span class="checkbox"></span>
+                        <span>🧼 ล้างมืออย่างถูกวิธีก่อนเปลี่ยนน้ำยาทุกครั้ง</span>
+                    </li>
+                    <li onclick="toggleCheck(this)">
+                        <span class="checkbox"></span>
+                        <span>ตรวจสายท้อง ไม่มีรอยแดง บวม หนอง</span>
+                    </li>
+                    <li onclick="toggleCheck(this)">
+                        <span class="checkbox"></span>
+                        <span>ดื่มน้ำตามปริมาณที่กำหนด</span>
+                    </li>
+                    <li onclick="toggleCheck(this)">
+                        <span class="checkbox"></span>
+                        <span>กินยาครบตามที่หมอสั่ง</span>
+                    </li>
+                    <li onclick="toggleCheck(this)">
+                        <span class="checkbox"></span>
+                        <span>กินโปรตีนเพียงพอ (เนื้อ ไข่ ปลา)</span>
+                    </li>
+                    <li onclick="toggleCheck(this)">
+                        <span class="checkbox"></span>
+                        <span>หลีกเลี่ยงอาหารเค็มจัด</span>
+                    </li>
+                </ul>
+                <button onclick="resetChecklist()" style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: #9C27B0; color: white; border: none; border-radius: 10px; cursor: pointer; font-family: inherit;">🔄 เริ่มใหม่</button>
+            </div>
+
+            <h3 class="subsection-title">📝 ตารางบันทึกประจำวัน</h3>
+            <table class="record-table">
+                <thead>
+                    <tr>
+                        <th>รายการ</th>
+                        <th>เช้า</th>
+                        <th>กลางวัน</th>
+                        <th>เย็น</th>
+                        <th>ก่อนนอน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>น้ำยาเข้า (มล.)</td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>น้ำยาออก (มล.)</td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>สีน้ำยาเก่า</td>
+                        <td><input type="text" placeholder="ใส/ขุ่น"></td>
+                        <td><input type="text" placeholder="ใส/ขุ่น"></td>
+                        <td><input type="text" placeholder="ใส/ขุ่น"></td>
+                        <td><input type="text" placeholder="ใส/ขุ่น"></td>
+                    </tr>
+                    <tr>
+                        <td>น้ำหนัก (กก.)</td>
+                        <td colspan="4"><input type="text" placeholder="ชั่งเช้าหลังตื่นนอน"></td>
+                    </tr>
+                    <tr>
+                        <td>ความดันโลหิต</td>
+                        <td colspan="4"><input type="text" placeholder="เช่น 120/80 mmHg"></td>
+                    </tr>
+                    <tr>
+                        <td>อาการผิดปกติ</td>
+                        <td colspan="4"><input type="text" placeholder="ถ้ามี ให้บันทึก"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section-card">
+            <span class="section-emoji">❓</span>
+            <h2 class="section-title">คำถามที่พบบ่อย</h2>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    อาบน้ำได้ไหม?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>ได้ค่ะ! ควรอาบแบบฝักบัว เช็ดให้แห้ง ส่วนแช่อ่างน้ำหรือว่ายน้ำต้องปรึกษาแพทย์ก่อนค่ะ</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    ต้องเปลี่ยนน้ำยาวันละกี่ครั้ง?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>โดยทั่วไปประมาณ 4 ครั้ง/วัน แต่ขึ้นกับคำสั่งแพทย์ค่ะ</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    ไปเที่ยวได้ไหม?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>ได้ค่ะ! เตรียมน้ำยาให้พอ หาที่สะอาดเปลี่ยนน้ำยา และแจ้งโรงพยาบาลก่อนเดินทางค่ะ</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    ทำไมต้องกินโปรตีนเยอะ?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>เพราะสูญเสียโปรตีนออกมากับน้ำยาทุกวัน จึงต้องกิน 1.2-1.3 กรัม/กก./วัน ค่ะ</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    ออกกำลังกายได้ไหม?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>ได้ค่ะ! แนะนำระดับเบาถึงปานกลาง เช่น เดิน ปั่นจักรยาน 3-5 วัน/สัปดาห์ หลีกเลี่ยงยกของหนักและซิทอัพค่ะ</p>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ Section -->
-        <section class="card">
-            <h2>❓ คำถามที่พบบ่อย</h2>
-            
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    โรคไตเรื้อรังรักษาหายได้ไหม?
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    โรคไตเรื้อรังไม่สามารถรักษาให้หายขาดได้ แต่สามารถชะลอความเสื่อมได้ด้วยการควบคุมอาหาร รักษาโรคร่วม และปฏิบัติตามคำแนะนำของแพทย์อย่างเคร่งครัด หากพบเร็วและดูแลดี อาจไม่ต้องฟอกไตไปตลอดชีวิต
-                </div>
-            </div>
-            
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    ผู้ป่วยโรคไตควรดื่มน้ำมากแค่ไหน?
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    ขึ้นอยู่กับระยะของโรค ผู้ป่วยระยะต้นควรดื่มน้ำ 6-8 แก้ว/วัน แต่ผู้ป่วยระยะท้ายหรือผู้ที่มีอาการบวมอาจต้องจำกัดน้ำตามที่แพทย์แนะนำ ควรปรึกษาแพทย์เพื่อกำหนดปริมาณที่เหมาะสม
-                </div>
-            </div>
-            
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    ยาแก้ปวดทำลายไตจริงหรือ?
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    ยาแก้ปวดกลุ่ม NSAIDs (เช่น ไอบูโพรเฟน ไดโคลฟีแนค) หากใช้ติดต่อกันนานๆ สามารถทำลายไตได้ ผู้ป่วยโรคไตควรหลีกเลี่ยงและใช้พาราเซตามอลแทน แต่ควรปรึกษาแพทย์ก่อนใช้ยาทุกครั้ง
-                </div>
-            </div>
-            
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    ผู้ป่วยโรคไตออกกำลังกายได้ไหม?
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    ได้และแนะนำให้ออกกำลังกายเบาถึงปานกลาง เช่น เดิน ว่ายน้ำ โยคะ สัปดาห์ละ 150 นาที ช่วยควบคุมความดัน น้ำหนัก และสุขภาพหัวใจ แต่ควรหลีกเลี่ยงการออกกำลังกายหนักเกินไป
-                </div>
-            </div>
-            
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    ควรตรวจไตบ่อยแค่ไหน?
-                    <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    คนทั่วไป: ปีละ 1 ครั้ง | ผู้มีปัจจัยเสี่ยง (เบาหวาน ความดันสูง): ทุก 6 เดือน | ผู้ป่วยโรคไต: ตามที่แพทย์นัด (อาจทุก 1-3 เดือน) การตรวจประกอบด้วย การตรวจเลือดวัดค่า Creatinine, BUN และตรวจปัสสาวะ
-                </div>
+        <!-- กำลังใจ -->
+        <section class="section-card" style="background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);">
+            <span class="section-emoji">💚</span>
+            <h2 class="section-title" style="color: #2E7D32;">กำลังใจจากเราถึงคุณ</h2>
+
+            <p style="font-size: 1.2rem; text-align: center; max-width: 600px; margin: 0 auto;">
+                การดูแลตัวเองด้วย CAPD อาจดูยากในตอนแรก<br>
+                แต่เมื่อคุณคุ้นเคยแล้ว มันจะกลายเป็นส่วนหนึ่งของชีวิตประจำวัน<br><br>
+                <strong style="color: #2E7D32; font-size: 1.3rem;">"คุณทำได้ และคุณไม่ได้อยู่คนเดียว"</strong><br><br>
+                ทีมแพทย์ พยาบาล และครอบครัวพร้อมเคียงข้างคุณเสมอ 💪
+            </p>
+
+            <div class="image-placeholder" style="background: rgba(255,255,255,0.5);">
+                <div class="image-placeholder-icon">🖼️</div>
+                <p>แนะนำใส่รูป: ผู้ป่วย CAPD ที่มีความสุข ทำกิจกรรมกับครอบครัว</p>
             </div>
         </section>
 
-        <!-- Resources -->
-        <section class="card">
-            <h2>📚 แหล่งข้อมูลเพิ่มเติม</h2>
-            <div class="risk-grid">
-                <div class="risk-item">
-                    <h4>🏥 สมาคมโรคไตแห่งประเทศไทย</h4>
-                    <p>www.nephrothai.org</p>
-                </div>
-                <div class="risk-item">
-                    <h4>📞 สายด่วนสุขภาพ กรมควบคุมโรค</h4>
-                    <p>1422</p>
-                </div>
-                <div class="risk-item">
-                    <h4>🚑 สายด่วนฉุกเฉิน</h4>
-                    <p>1669</p>
-                </div>
-                <div class="risk-item">
-                    <h4>💬 สายด่วนสุขภาพจิต</h4>
-                    <p>1323</p>
-                </div>
-            </div>
-        </section>
-    </div>
+    </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <p>⚠️ ข้อมูลในเว็บไซต์นี้มีวัตถุประสงค์เพื่อให้ความรู้เบื้องต้นเท่านั้น ไม่สามารถใช้แทนการวินิจฉัยหรือรักษาโดยแพทย์</p>
-        <p style="margin-top: 0.5rem;">กรุณาปรึกษาแพทย์หรือผู้เชี่ยวชาญสำหรับคำแนะนำเฉพาะบุคคล</p>
-        <p style="margin-top: 1rem; opacity: 0.8;">© 2025 คู่มือสุขภาพไต | สร้างด้วย ❤️ เพื่อผู้ป่วยไทย</p>
+        <div class="footer-disclaimer">
+            <p>⚠️ <strong>ข้อสำคัญ:</strong> เนื้อหานี้เพื่อให้ความรู้เบื้องต้น ไม่สามารถใช้แทนคำแนะนำจากแพทย์ กรุณาปรึกษาทีมแพทย์ที่ดูแลท่าน</p>
+        </div>
+        <div class="footer-credits">
+            <p>🎓 โปรเจคจบการศึกษา | สาขาพยาบาลศาสตร์</p>
+            <p style="margin-top: 0.5rem;">จัดทำด้วย ❤️ เพื่อผู้ป่วย CAPD ทุกท่าน</p>
+            <p style="margin-top: 0.5rem; opacity: 0.7;">© 2025 CAPD เพื่อนร่วมทาง</p>
+        </div>
     </footer>
 
+    <a href="tel:1669" class="fab" title="โทรฉุกเฉิน 1669">📞</a>
+
     <script>
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1260,147 +1411,64 @@
             });
         });
 
-        // Food tabs
-        function showFoodTab(tabId) {
-            document.querySelectorAll('#food .tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.querySelectorAll('#food .tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
+        function toggleCheck(element) {
+            element.classList.toggle('checked');
+            saveChecklist();
         }
 
-        // Calculator tabs
-        function showCalcTab(tabId) {
-            document.querySelectorAll('#calculator .tab-content').forEach(content => {
-                content.classList.remove('active');
+        function resetChecklist() {
+            document.querySelectorAll('.checklist li').forEach(item => {
+                item.classList.remove('checked');
             });
-            document.querySelectorAll('#calculator .tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
+            localStorage.removeItem('capdChecklist');
         }
 
-        // Risk calculator options
-        document.querySelectorAll('.calc-option').forEach(option => {
-            option.addEventListener('click', function() {
-                const question = this.dataset.q;
-                document.querySelectorAll(`.calc-option[data-q="${question}"]`).forEach(opt => {
-                    opt.classList.remove('selected');
+        function saveChecklist() {
+            const checked = [];
+            document.querySelectorAll('.checklist li').forEach((item, index) => {
+                if (item.classList.contains('checked')) checked.push(index);
+            });
+            localStorage.setItem('capdChecklist', JSON.stringify(checked));
+        }
+
+        function loadChecklist() {
+            const saved = localStorage.getItem('capdChecklist');
+            if (saved) {
+                const checked = JSON.parse(saved);
+                document.querySelectorAll('.checklist li').forEach((item, index) => {
+                    if (checked.includes(index)) item.classList.add('checked');
                 });
-                this.classList.add('selected');
+            }
+        }
+
+        function toggleFaq(element) {
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== element) item.classList.remove('active');
             });
+            element.classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            header.style.background = window.scrollY > 100 ? 'rgba(78, 205, 196, 0.98)' : 'var(--gradient)';
         });
 
-        // Calculate risk
-        function calculateRisk() {
-            const selected = document.querySelectorAll('.calc-option.selected');
-            if (selected.length < 8) {
-                alert('กรุณาตอบคำถามให้ครบทุกข้อ');
-                return;
-            }
+        document.addEventListener('DOMContentLoaded', loadChecklist);
 
-            let score = 0;
-            selected.forEach(opt => {
-                score += parseInt(opt.dataset.score);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
+        }, { threshold: 0.1 });
 
-            const resultBox = document.getElementById('riskResult');
-            const h3 = resultBox.querySelector('h3');
-            const p = resultBox.querySelector('p');
-
-            resultBox.style.display = 'block';
-            resultBox.className = 'result-box';
-
-            if (score <= 4) {
-                resultBox.classList.add('result-low');
-                h3.textContent = '✅ ความเสี่ยงต่ำ';
-                p.textContent = 'คุณมีความเสี่ยงต่ำต่อโรคไต แต่ยังควรดูแลสุขภาพและตรวจสุขภาพประจำปี';
-            } else if (score <= 8) {
-                resultBox.classList.add('result-medium');
-                h3.textContent = '⚠️ ความเสี่ยงปานกลาง';
-                p.textContent = 'คุณมีปัจจัยเสี่ยงบางอย่าง ควรปรับพฤติกรรมและตรวจคัดกรองโรคไตทุก 6 เดือน';
-            } else {
-                resultBox.classList.add('result-high');
-                h3.textContent = '🚨 ความเสี่ยงสูง';
-                p.textContent = 'คุณมีปัจจัยเสี่ยงหลายอย่าง ควรพบแพทย์เพื่อตรวจคัดกรองโรคไตโดยเร็ว';
-            }
-        }
-
-        // Calculate eGFR (CKD-EPI 2021)
-        function calculateEGFR() {
-            const age = parseFloat(document.getElementById('egfrAge').value);
-            const gender = document.getElementById('egfrGender').value;
-            const creatinine = parseFloat(document.getElementById('egfrCreatinine').value);
-
-            if (!age || !gender || !creatinine) {
-                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-                return;
-            }
-
-            let eGFR;
-            const scr = creatinine;
-            
-            // CKD-EPI 2021 equation (race-free)
-            if (gender === 'female') {
-                if (scr <= 0.7) {
-                    eGFR = 142 * Math.pow(scr / 0.7, -0.241) * Math.pow(0.9938, age) * 1.012;
-                } else {
-                    eGFR = 142 * Math.pow(scr / 0.7, -1.2) * Math.pow(0.9938, age) * 1.012;
-                }
-            } else {
-                if (scr <= 0.9) {
-                    eGFR = 142 * Math.pow(scr / 0.9, -0.302) * Math.pow(0.9938, age);
-                } else {
-                    eGFR = 142 * Math.pow(scr / 0.9, -1.2) * Math.pow(0.9938, age);
-                }
-            }
-
-            eGFR = Math.round(eGFR * 10) / 10;
-
-            const resultBox = document.getElementById('egfrResult');
-            resultBox.style.display = 'block';
-            document.querySelector('.egfr-value').textContent = eGFR;
-
-            let stage = '';
-            if (eGFR >= 90) {
-                stage = 'ระยะ 1: การทำงานของไตปกติ';
-                document.querySelector('.egfr-value').style.color = '#2e7d32';
-            } else if (eGFR >= 60) {
-                stage = 'ระยะ 2: ไตเสื่อมเล็กน้อย';
-                document.querySelector('.egfr-value').style.color = '#689f38';
-            } else if (eGFR >= 30) {
-                stage = 'ระยะ 3: ไตเสื่อมปานกลาง - ควรพบแพทย์';
-                document.querySelector('.egfr-value').style.color = '#f57c00';
-            } else if (eGFR >= 15) {
-                stage = 'ระยะ 4: ไตเสื่อมรุนแรง - ต้องพบแพทย์ด่วน';
-                document.querySelector('.egfr-value').style.color = '#e64a19';
-            } else {
-                stage = 'ระยะ 5: ไตวาย - ต้องรักษาทันที';
-                document.querySelector('.egfr-value').style.color = '#c62828';
-            }
-
-            document.getElementById('egfrStage').textContent = stage;
-        }
-
-        // FAQ toggle
-        function toggleFaq(element) {
-            element.classList.toggle('active');
-            const span = element.querySelector('.faq-question span');
-            span.textContent = element.classList.contains('active') ? '−' : '+';
-        }
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.15)';
-            } else {
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            }
+        document.querySelectorAll('.section-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
         });
     </script>
 </body>
