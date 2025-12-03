@@ -266,10 +266,58 @@
         footer {
             background: var(--white);
             border-top: 1px solid var(--border);
-            padding: 2rem 1.5rem;
-            text-align: center;
+            padding: 1.5rem;
             color: var(--text-light);
             font-size: 0.9rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .footer-qr {
+            flex-shrink: 0;
+        }
+
+        .footer-qr img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .footer-qr p {
+            font-size: 0.75rem;
+            text-align: center;
+            margin-top: 0.5rem;
+            margin-bottom: 0;
+            color: var(--text-light);
+        }
+
+        .footer-text {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .footer-text p {
+            margin-bottom: 0.25rem;
+        }
+
+        @media (max-width: 600px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-qr img {
+                width: 100px;
+                height: 100px;
+            }
         }
 
         /* Mascot Character */
@@ -709,18 +757,22 @@
     </main>
 
     <footer>
-        <p>@ รักษาไต CAPD - คู่มือการดูแลตัวเองสำหรับผู้ป่วยล้างไตทางช่องท้อง</p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem;">เว็บไซต์นี้จัดทำขึ้นโดยนักศึกษาพยาบาลไตรังสิตและโรงพยาบาลนพรัตนราชธานี</p>
+        <div class="footer-content">
+            <div class="footer-qr">
+                <img src="qr-code.png" alt="QR Code">
+                <p>สแกนเพื่อเข้าเว็บ</p>
+            </div>
+            <div class="footer-text">
+                <p>@ รักษาไต CAPD - คู่มือการดูแลตัวเองสำหรับผู้ป่วยล้างไตทางช่องท้อง</p>
+                <p style="font-size: 0.85rem;">เว็บไซต์นี้จัดทำขึ้นโดยนักศึกษาพยาบาลไตรังสิตและโรงพยาบาลนพรัตนราชธานี</p>
+            </div>
+        </div>
     </footer>
 
     <!-- Mascot Character -->
     <div class="mascot-container">
         <div class="mascot-tooltip">
             <h4>🖼️ รูปภาพ Mascot</h4>
-            <p class="url-label">URL รูปภาพ:</p>
-            <div class="url-box">
-                https://your-image-hosting.com/nurse-mascot.png
-            </div>
         </div>
         <img src="nurse-mascot.png" alt="พยาบาลผู้ช่วย" class="mascot-img" title="พยาบาลผู้ช่วย">
     </div>
