@@ -26,6 +26,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Sarabun', sans-serif;
             background: var(--bg);
@@ -98,7 +102,7 @@
             opacity: 0.9;
             max-width: 600px;
             margin: 0 auto;
-            color: var(--white)
+            corlor: var(--white);
         }
 
         /* Main Content */
@@ -152,7 +156,7 @@
             color: var(--text);
         }
 
-        ul {
+        ul, ol {
             margin: 0.5rem 0 1rem 1.5rem;
         }
 
@@ -234,8 +238,54 @@
             gap: 0.75rem;
         }
 
-        .tip-box .tip-icon {
+        .tip-icon {
             font-size: 1.2rem;
+        }
+
+        /* Exercise Pose Cards */
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .exercise-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .exercise-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .exercise-card-content {
+            padding: 1rem;
+        }
+
+        .exercise-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .exercise-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin: 0;
         }
 
         /* Nutrition Table */
@@ -308,18 +358,6 @@
             margin-bottom: 0.25rem;
         }
 
-        @media (max-width: 600px) {
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-qr img {
-                width: 100px;
-                height: 100px;
-            }
-        }
-
         /* Mascot Character */
         .mascot-container {
             position: fixed;
@@ -358,8 +396,7 @@
             visibility: hidden;
             transform: translateY(10px);
             transition: all 0.3s ease;
-            min-width: 280px;
-            max-width: 320px;
+            white-space: nowrap;
         }
 
         .mascot-tooltip::after {
@@ -398,67 +435,35 @@
             gap: 6px;
         }
 
-        .mascot-tooltip .url-box {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 8px 10px;
-            font-size: 0.75rem;
-            color: var(--text-light);
-            word-break: break-all;
-            font-family: monospace;
-        }
-
-        .mascot-tooltip .url-label {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-bottom: 5px;
-        }
-
-        /* Responsive Mascot */
-        @media (max-width: 768px) {
-            .mascot-img {
-                width: 60px;
-                height: 60px;
-            }
-
-            .mascot-container {
-                bottom: 15px;
-                right: 15px;
-            }
-
-            .mascot-tooltip {
-                min-width: 220px;
-                max-width: 260px;
-                right: -10px;
-            }
-        }
-
+        /* Responsive */
         @media (max-width: 480px) {
-            .mascot-img {
-                width: 50px;
-                height: 50px;
-            }
-
             .mascot-container {
                 bottom: 10px;
                 right: 10px;
             }
 
+            .mascot-img {
+                width: 50px;
+                height: 50px;
+            }
+
             .mascot-tooltip {
-                min-width: 200px;
                 font-size: 0.85rem;
             }
         }
 
-        @media (min-width: 1200px) {
-            .mascot-img {
+        @media (max-width: 600px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-qr img {
                 width: 100px;
                 height: 100px;
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 1.8rem;
@@ -471,11 +476,27 @@
             section {
                 padding: 1.5rem;
             }
+
+            .mascot-container {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .mascot-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .mascot-tooltip {
+                right: -10px;
+            }
         }
 
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
+        @media (min-width: 1200px) {
+            .mascot-img {
+                width: 100px;
+                height: 100px;
+            }
         }
     </style>
 </head>
@@ -652,6 +673,95 @@
                 <li>บริหารกล้ามเนื้อต้นขาและสะโพก: ลุก-นั่ง หรือบริหารในท่านอน</li>
                 <li>การออกกำลังกายด้วยยางยืด</li>
             </ul>
+
+            <h3>🏋️ ท่าออกกำลังกาย</h3>
+            <div class="exercise-grid">
+                <div class="exercise-card">
+                    <img src="nurse-mascot.png" alt="ท่าที่ 1">
+                    <div class="exercise-card-content">
+                        <h4>ท่าที่ 1</h4>
+                        <p>บริหารกล้ามเนื้อหัวไหล่ ยกแขน</p>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <img src="nurse-mascot.png" alt="ท่าที่ 2">
+                    <div class="exercise-card-content">
+                        <h4>ท่าที่ 2</h4>
+                        <p>บริหารกล้ามเนื้อหัวไหล่ กางแขน</p>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <img src="nurse-mascot.png" alt="ท่าที่ 3">
+                    <div class="exercise-card-content">
+                        <h4>ท่าที่ 3</h4>
+                        <p>บริหารกล้ามเนื้อต้นแขนด้านหน้า</p>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <img src="nurse-mascot.png" alt="ท่าที่ 4">
+                    <div class="exercise-card-content">
+                        <h4>ท่าที่ 4</h4>
+                        <p>บริหารกล้ามเนื้อต้นขาด้านหน้า</p>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <img src="nurse-mascot.png" alt="ท่าที่ 5">
+                    <div class="exercise-card-content">
+                        <h4>ท่าที่ 5</h4>
+                        <p>บริหารกล้ามเนื้องอสะโพก</p>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <img src="nurse-mascot.png" alt="ท่าที่ 6">
+                    <div class="exercise-card-content">
+                        <h4>ท่าที่ 6</h4>
+                        <p>บริหารกล้ามเนื้อเหยียดสะโพก</p>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <img src="nurse-mascot.png" alt="ท่าที่ 7">
+                    <div class="exercise-card-content">
+                        <h4>ท่าที่ 7</h4>
+                        <p>ท่าบริหารกล้ามเนื้อสะโพก กางขา</p>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <img src="nurse-mascot.png" alt="ท่าที่ 8">
+                    <div class="exercise-card-content">
+                        <h4>ท่าที่ 8</h4>
+                        <p>ท่าบริหารกล้ามเนื้อน่อง</p>
+                    </div>
+                </div>
+                <div class="exercise-card">
+                    <img src="nurse-mascot.png" alt="ท่าที่ 9">
+                    <div class="exercise-card-content">
+                        <h4>ท่าที่ 9</h4>
+                        <p>ท่าบริหารกล้ามเนื้อหน้าขา ลุก-นั่ง</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🦶 วิธีการลดบวมบริเวณปลายเท้า</h3>
+            <div class="exercise-grid">
+                <div class="exercise-card">
+                    <img src="nurse-mascot.png" alt="ลดบวมปลายเท้า">
+                    <div class="exercise-card-content">
+                        <h4>นอนหงายยกขาสูง</h4>
+                        <p>กระดกปลายเท้าขึ้น-ลง</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🫁 เสริมสร้างสมรรถภาพปอดและการหายใจ</h3>
+            <div class="exercise-grid">
+                <div class="exercise-card">
+                    <img src="nurse-mascot.png" alt="บริหารปอด">
+                    <div class="exercise-card-content">
+                        <h4>ประสานมือยกแขน</h4>
+                        <p>ยกแขนทั้งสองข้างช้าๆ ไปทางซ้าย-ขวา พร้อมหายใจออก</p>
+                    </div>
+                </div>
+            </div>
 
             <h3>📋 คำแนะนำทั่วไป</h3>
             <div class="info-grid">
